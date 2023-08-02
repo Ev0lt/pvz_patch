@@ -8,18 +8,18 @@
 HANDLE start() {
 	HWND gw =::FindWindow(NULL, "Plants vs. Zombies");
 	if (gw == NULL) {
-		printf("ÓĞÃ»ÓĞ´ò¿ªÓÎÏ·");
+		printf("æœ‰æ²¡æœ‰æ‰“å¼€æ¸¸æˆ");
 		exit(0);
 	}
 	DWORD pid;
 	GetWindowThreadProcessId(gw, &pid);
 	if (pid == NULL) {
-		printf("»ñÈ¡ÓÎÏ·pidÊ§°Ü");
+		printf("è·å–æ¸¸æˆpidå¤±è´¥");
 		exit(0);
 	}
 	HANDLE proc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
 	if (pid == NULL) {
-		printf("»ñÈ¡ÓÎÏ·¾ä±úÊ§°Ü");
+		printf("è·å–æ¸¸æˆå¥æŸ„å¤±è´¥");
 		exit(0);
 	}
 	return proc;
@@ -50,12 +50,12 @@ int change_1(HANDLE proc, int addr, DWORD enable, DWORD disable) {
 	ReadProcessMemory(proc, (LPCVOID)addr, ret_value, 4, 0);
 	if (num == enable) {
 		WriteProcessMemory(proc, (LPVOID)addr, &disable, 4, 0);
-		printf("¹Ø±ÕÁË\n\n");
+		printf("å…³é—­äº†\n\n");
 		return 0;
 	}
 	if (num == disable) {
 		WriteProcessMemory(proc, (LPVOID)addr, &enable, 4, 0);
-		printf("¿ªÆôÁË\n\n");
+		printf("å¼€å¯äº†\n\n");
 		return 0;
 	}
 }
@@ -66,48 +66,49 @@ int change_2(HANDLE proc,int addr,unsigned long long enable,unsigned long long d
 	ReadProcessMemory(proc, (LPCVOID)addr, ret_value, 8, 0);
 	if (num == enable){
 		WriteProcessMemory(proc,(LPVOID)addr,&disable,8,0);
-		printf("¹Ø±ÕÁË\n\n");
+		printf("å…³é—­äº†\n\n");
 		return 0;
 	}
 	if (num == disable){
 		WriteProcessMemory(proc,(LPVOID)addr,&enable,8,0);
-		printf("¿ªÆôÁË\n\n");
+		printf("å¼€å¯äº†\n\n");
 		return 0;
 	}
 	return 0;
 }
 
 void menu() {
-	printf("1. ¸ü¸ÄÑô¹â            \n");
-	printf("2. ¸ü¸Ä½ğ±Ò            \n");
-	printf("3. ¸ü¸ÄÇÉ¿ËÁ¦          \n");
-	printf("4. ¸ü¸ÄÉ±³æÅçÎí        \n");
-	printf("5. ¸ü¸Ä·ÊÁÏ            \n");
-	printf("6. ¸ü¸ÄÖÇ»ÛÊ÷¸ß¶È      \n");
-	printf("7. ÎŞÀäÈ´              \n");
-	printf("8. ×Ô¶¯ÊÕ¼¯Ñô¹âºÍ½ğ±Ò  \n");
-	printf("9. »ÙÃğ¹½ÎŞµ¯¿Ó        \n");
-	printf("10.Ä¢¹½Àà°×ÌìÎŞĞè»½ĞÑ  \n");
-	printf("11.ÅÅÉ½µ¹º£            \n");
-	printf("12.ËæÒâ·ÅÖÃ            \n");
-	printf("13.½©Ê¬½ûÖ¹            \n");
-	printf("14.×Óµ¯È«²¿±ä³ÉÓñÃ×°ô  \n");
-	printf("15.ÃëÉ±½©Ê¬            \n");
-	printf("16.Çå³ıÖ²Îï            \n");
-	printf("17.Çå³ıÄ¹±®Ìİ×ÓÄÔ×Ó¹Ş×Ó\n");
-	printf("18.Å¨ÎíÍ¸ÊÓ			   \n");
-	printf("19.Í¸ÊÓ¹Ş×Ó            \n");
-	printf("20.ÏÔÊ¾Òş²ØÒ³Ãæ        \n");
-	printf("21.ÓñÍ¶ÊÖÖ»Í¶»ÆÓÍ      \n");
-	printf("22.´«ËÍ´øÎŞÑÓ³Ù        \n");
-	printf("23.Ìø¹Ø                \n");
-	printf("24.½âËøËùÓĞ³É¾Í        \n");
-	printf("25.ÍË³ö                \n");
+	printf("1. æ›´æ”¹é˜³å…‰            \n");
+	printf("2. æ›´æ”¹é‡‘å¸            \n");
+	printf("3. æ›´æ”¹å·§å…‹åŠ›          \n");
+	printf("4. æ›´æ”¹æ€è™«å–·é›¾        \n");
+	printf("5. æ›´æ”¹è‚¥æ–™            \n");
+	printf("6. æ›´æ”¹æ™ºæ…§æ ‘é«˜åº¦      \n");
+	printf("7. æ— å†·å´              \n");
+	printf("8. è‡ªåŠ¨æ”¶é›†é˜³å…‰å’Œé‡‘å¸  \n");
+	printf("9. æ¯ç­è‡æ— å¼¹å‘        \n");
+	printf("10.è˜‘è‡ç±»ç™½å¤©æ— éœ€å”¤é†’  \n");
+	printf("11.æ’å±±å€’æµ·            \n");
+	printf("12.éšæ„æ”¾ç½®            \n");
+	printf("13.åƒµå°¸ç¦æ­¢            \n");
+	printf("14.å­å¼¹å…¨éƒ¨å˜æˆç‰ç±³æ£’  \n");
+	printf("15.ç§’æ€åƒµå°¸            \n");
+	printf("16.æ¸…é™¤æ¤ç‰©            \n");
+	printf("17.æ¸…é™¤å¢“ç¢‘æ¢¯å­è„‘å­ç½å­\n");
+	printf("18.æµ“é›¾é€è§†			   \n");
+	printf("19.é€è§†ç½å­            \n");
+	printf("20.æ˜¾ç¤ºéšè—é¡µé¢        \n");
+	printf("21.ç‰æŠ•æ‰‹åªæŠ•é»„æ²¹      \n");
+	printf("22.ä¼ é€å¸¦æ— å»¶è¿Ÿ        \n");
+	printf("23.è·³å…³                \n");
+	printf("24.è§£é”æ‰€æœ‰æˆå°±        \n");
+	printf("25.åå°è¿è¡Œ            \n");
+	printf("26.é€€å‡º                \n");
 }
 
 void chose(HANDLE proc) {
 	int choses;
-	printf("Çë×ö³öÄãµÄÑ¡Ôñ:");
+	printf("è¯·åšå‡ºä½ çš„é€‰æ‹©:");
 	scanf("%d", &choses);
 	switch (choses) {
 		case 1: {
@@ -118,14 +119,14 @@ void chose(HANDLE proc) {
 				num = 0x80C70AEB;
 				WriteProcessMemory(proc, (LPVOID)0x41f4e5, ret_value, 4, 0);
 			}
-			printf("Òª¸Ä³É¶àÉÙÑô¹â:");
+			printf("è¦æ”¹æˆå¤šå°‘é˜³å…‰:");
 			scanf("%d", &num);
 			change(proc, num, 0x868, 0x5578);
 			break;
 		}
 		case 2: {
 			int money;
-			printf("Òª¸ÄÎª¶àÉÙ½ğ±Ò(ÇëÊäÈë10µÄ±¶Êı):");
+			printf("è¦æ”¹ä¸ºå¤šå°‘é‡‘å¸(è¯·è¾“å…¥10çš„å€æ•°):");
 			scanf("%d", &money);
 			money = money / 10;
 			change(proc, money, 0x94c, 0x54);
@@ -133,28 +134,28 @@ void chose(HANDLE proc) {
 		}
 		case 3: {
 			int chalt;
-			printf("ĞèÒª¸ÄÎª¶àÉÙÇÉ¿ËÁ¦:");
+			printf("éœ€è¦æ”¹ä¸ºå¤šå°‘å·§å…‹åŠ›:");
 			scanf("%d", &chalt);
 			change(proc, chalt+1000, 0x94c, 0x254);
 			break;
 		}
 		case 4: {
 			int num;
-			printf("ĞèÒª¸ÄÎª¶àÉÙÉ±³æÅçÎí:");
+			printf("éœ€è¦æ”¹ä¸ºå¤šå°‘æ€è™«å–·é›¾:");
 			scanf("%d", &num);
 			change(proc, num+1000, 0x94c, 0x228);
 			break;
 		}
 		case 5: {
 			int num;
-			printf("ĞèÒª¸ÄÎª¶àÉÙ·ÊÁÏ:");
+			printf("éœ€è¦æ”¹ä¸ºå¤šå°‘è‚¥æ–™:");
 			scanf("%d", &num);
 			change(proc, num+1000, 0x94c, 0x224);
 			break;
 		}
 		case 6: {
 			int num;
-			printf("¸ü¸ÄÖÇ»ÛÊ÷¸ß¶È:");
+			printf("æ›´æ”¹æ™ºæ…§æ ‘é«˜åº¦:");
 			scanf("%d", &num);
 			change(proc, num, 0x94c, 0x120);
 			break;
@@ -282,14 +283,14 @@ void chose(HANDLE proc) {
 		case 23:{
 			int num1;
 			int num2;
-			printf("Ìø×ªµÄ¹Ø¿¨£¨ÇëÊäÈë ?-?µÄĞÎÊ½ÀıÈç£º1-1·¶Î§(1-5)-(1-9)£©:");
+			printf("è·³è½¬çš„å…³å¡ï¼ˆè¯·è¾“å…¥ ?-?çš„å½¢å¼ä¾‹å¦‚ï¼š1-1èŒƒå›´(1-5)-(1-9)ï¼‰:");
 			scanf("%d-%d",&num1,&num2);
 			int fin_num=(num1-1)*10+num2;
 			change(proc, fin_num, 0x94c, 0x50);
 			break;
 		}
 		case 24:{		
-			printf("¸Ã¹¦ÄÜÓĞÎÊÌâ£¬ÔİÊ±Í£ÓÃ\n\n");
+			printf("è¯¥åŠŸèƒ½æœ‰é—®é¢˜ï¼Œæš‚æ—¶åœç”¨\n\n");
 			/*
 			try
 				{
@@ -320,6 +321,13 @@ void chose(HANDLE proc) {
 				break;
 		}
 		case 25:{
+			DWORD enable =0x458B4074;
+			DWORD disable=0x458B00EB;
+			int addr=0x5D87C9;
+			change_1(proc,addr,enable,disable);
+			break;
+		}
+		case 26:{
 			exit(0);
 		}
 		default:
