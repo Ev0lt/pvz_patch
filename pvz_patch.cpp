@@ -4,7 +4,6 @@
 
 #define base_addr 0x00731c50
 
-
 HANDLE start() {
 	HWND gw =::FindWindow(NULL, "Plants vs. Zombies");
 	if (gw == NULL) {
@@ -33,7 +32,7 @@ void read(HANDLE proc, int addr) {
 }
 
 
-int change(HANDLE proc, DWORD cha, int offest1, int offest2) {
+void change(HANDLE proc, DWORD cha, int offest1, int offest2) {
 	int num;
 	LPCVOID addr = (LPCVOID)base_addr;
 	LPVOID ret_value = &num;
@@ -113,6 +112,7 @@ void chose(HANDLE proc) {
 	switch (choses) {
 		case 1: {
 			int num;
+			int sum;
 			LPVOID ret_value = &num;
 			ReadProcessMemory(proc, (LPCVOID)0x41f4e5, ret_value, 4, 0);
 			if (num == 0x80C70A7E) {
@@ -120,8 +120,8 @@ void chose(HANDLE proc) {
 				WriteProcessMemory(proc, (LPVOID)0x41f4e5, ret_value, 4, 0);
 			}
 			printf("要改成多少阳光:");
-			scanf("%d", &num);
-			change(proc, num, 0x868, 0x5578);
+			scanf("%d", &sum);
+			change(proc, sum, 0x868, 0x5578);
 			break;
 		}
 		case 2: {
@@ -177,7 +177,7 @@ void chose(HANDLE proc) {
 		case 9: {
 			DWORD enable = 0x5CE80574;
 			DWORD disable = 0x5CE80575;
-			int addr = 0x42136d1;
+			int addr = 0x42136d;
 			change_1(proc, addr, enable, disable);
 			break;
 		}
@@ -245,9 +245,9 @@ void chose(HANDLE proc) {
 			break;
 		}
 		case 19:{
-			DWORD enable=0x90000000324c45c7;
-			DWORD disable=0x03358E0F004C7D83;
-			int addr=0x004527C4;
+			unsigned long long enable=0x90000000324c45c7;
+			unsigned long long disable=0x03358E0F004C7D83;
+			int addr=0x4527C4;
 			change_2(proc,addr,enable,disable);
 			break;
 		}
@@ -318,7 +318,7 @@ void chose(HANDLE proc) {
 				{
 				}
 				*/
-				break;
+			break;
 		}
 		case 25:{
 			DWORD enable =0x458B4074;
@@ -345,5 +345,4 @@ int main() {
 		menu();
 		chose(proc);
 	}
-	return 0;
 }
